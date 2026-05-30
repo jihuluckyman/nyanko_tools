@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>자회자회 냥코툴즈</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
+body{
+overflow:hidden;
+background:radial-gradient(circle at top left,#ffe16a,#ffd43b),linear-gradient(135deg,#fff7cc,#ffe066);
+min-height:100vh;
+}
+#loading,#pageLoading{
+position:fixed;inset:0;
+background:linear-gradient(135deg,#ffd43b,#ffec99);
+display:flex;flex-direction:column;justify-content:center;align-items:center;
+z-index:9999;transition:1s;
+}
+#pageLoading{display:none;opacity:1;}
+.loading-logo{font-size:60px;margin-bottom:20px;animation:bounce 1s infinite;}
+.loading-title{font-size:40px;font-weight:900;color:#222;}
+.loading-text{margin-top:10px;color:#444;font-weight:700;}
+.percent{margin-top:12px;font-size:22px;font-weight:900;color:#222;}
+.bar{width:min(320px,80vw);height:14px;background:white;border-radius:999px;overflow:hidden;margin-top:20px;}
+.fill,.fill2{height:100%;width:0%;background:#222;}
+.fill{animation:load243 2.43s forwards;}
+@keyframes load243{to{width:100%;}}
+@keyframes bounce{50%{transform:translateY(-8px);}}
+
+.topbar{
+position:fixed;top:15px;left:15px;z-index:100;
+}
+.contact-btn{
+border:none;background:rgba(255,255,255,.8);
+backdrop-filter:blur(10px);
+padding:12px 18px;border-radius:15px;
+font-weight:800;cursor:pointer;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+.contact-btn:hover{transform:translateY(-2px);}
+
+.main{
+opacity:0;transition:1s;height:100vh;
+display:flex;justify-content:center;align-items:center;padding:20px;
+}
+.container{width:100%;max-width:1100px;}
+.hero{text-align:center;margin-bottom:40px;}
+.hero h1{font-size:clamp(42px,8vw,90px);font-weight:900;color:#222;}
+.hero p{font-size:18px;color:#444;margin-top:10px;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;}
+.card{
+background:rgba(255,255,255,.7);
+backdrop-filter:blur(12px);
+border-radius:35px;padding:30px;
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+transition:.3s;
+}
+.card:hover{transform:translateY(-10px);}
+.icon{font-size:60px;}
+.title{font-size:30px;font-weight:800;margin-top:15px;}
+.desc{margin-top:10px;color:#666;}
+
+.btn{
+width:100%;padding:18px;margin-top:25px;border:none;
+border-radius:18px;font-size:18px;font-weight:700;
+cursor:pointer;background:#ffd43b;transition:.2s;
+}
+.btn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 12px 30px rgba(0,0,0,.18);}
+.btn:active{transform:translateY(2px) scale(.98);}
+
+.cat{
+position:fixed;font-size:40px;pointer-events:none;
+opacity:.18;animation:float 15s linear infinite;
+}
+.cat:nth-of-type(1){left:5%;animation-duration:16s;}
+.cat:nth-of-type(2){left:30%;animation-duration:22s;font-size:55px;}
+.cat:nth-of-type(3){left:55%;animation-duration:18s;}
+.cat:nth-of-type(4){left:80%;animation-duration:24s;font-size:50px;}
+@keyframes float{from{top:110%;}to{top:-15%;}}
+
+.footer{
+position:fixed;bottom:15px;left:50%;transform:translateX(-50%);
+font-size:14px;color:#444;
+}
+.footer a{text-decoration:none;color:#222;font-weight:700;}
+</style>
+</head>
+<body>
+
+<div id="loading">
+<div class="loading-logo">🐱</div>
+<div class="loading-title">자회자회 냥코툴즈</div>
+<div class="loading-text">로딩 중...</div>
+<div class="percent" id="percent">0%</div>
+<div class="bar"><div class="fill"></div></div>
+</div>
+
+<div id="pageLoading">
+<div class="loading-logo">🐱</div>
+<div class="loading-title">이동중...</div>
+<div class="loading-text">잠시만 기다려주세요</div>
+<div class="percent" id="percent2">0%</div>
+<div class="bar"><div class="fill2" id="fill2"></div></div>
+</div>
+
+<div class="topbar">
+<button class="contact-btn" onclick="window.open('http://open.kakao.com/o/sKwv9hbi','_blank')">💬 문의하기</button>
+</div>
+
+<div class="cat">🐱</div><div class="cat">🐱</div><div class="cat">🐱</div><div class="cat">🐱</div>
+
+<div class="main" id="main">
+<div class="container">
+<div class="hero">
+<h1>자회자회 냥코툴즈</h1>
+<p>냥코대전쟁 유틸리티 허브</p>
+</div>
+
+<div class="grid">
+<div class="card">
+<div class="icon">💰</div>
+<div class="title">냥코계정 가치측정기</div>
+<div class="desc">계정의 가치를 계산하고 분석할 수 있습니다.</div>
+<button class="btn" onclick="fakeLoad('https://jihuluckyman.github.io/nyanko_tool/')">시작하기</button>
+</div>
+
+<div class="card">
+<div class="icon">🎲</div>
+<div class="title">뽑기 시뮬레이터</div>
+<div class="desc">가상으로 뽑기를 체험해보세요.</div>
+<button class="btn" onclick="fakeLoad('https://jihuluckyman.github.io/nyanko_gacha/')">시작하기</button>
+</div>
+</div>
+</div>
+
+<div class="footer">Made by <a href="https://youtube.com/@%EC%9E%90%ED%9A%8C%EC%9E%90%ED%9A%8C" target="_blank">@자회자회</a></div>
+</div>
+
+<script>
+let p=0;
+const t=setInterval(()=>{
+p++;
+document.getElementById('percent').textContent=p+'%';
+if(p>=100) clearInterval(t);
+},24.3);
+
+setTimeout(()=>{
+loading.style.opacity='0';
+setTimeout(()=>{
+loading.style.display='none';
+main.style.opacity='1';
+},1000);
+},2430);
+
+function fakeLoad(url){
+const pl=document.getElementById('pageLoading');
+const fill=document.getElementById('fill2');
+const per=document.getElementById('percent2');
+pl.style.display='flex';
+let n=0;
+fill.style.width='0%';
+const timer=setInterval(()=>{
+n++;
+per.textContent=n+'%';
+fill.style.width=n+'%';
+if(n>=100){
+clearInterval(timer);
+window.location.href=url;
+}
+},20);
+}
+</script>
+</body>
+</html>
