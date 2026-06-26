@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="zAYU9hXI6U14UalnmkKimwSScjzDC-XDE36--qswhHQ" />
+<title>냥코툴즈</title>
+<meta name="description" content="냥코계정 가치를 알 수 있고 그리고 뽑기 시뮬레이션을 할 수 있습니다!">
+<meta name="keywords" content="냥코툴즈,냥코 뽑시 시뮬,냥코대전쟁,자회자회,냥코계정 가치">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+overflow-x:hidden;
+overflow-y:auto;
+background:
+radial-gradient(circle at top left,#ffe16a,#ffd43b),
+linear-gradient(135deg,#fff7cc,#ffe066);
+min-height:100vh;
+}
+
+/* 첫 로딩 */
+
+#loading,
+#pageLoading{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#ffd43b,#ffec99);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+#pageLoading{
+display:none;
+}
+
+.loading-logo{
+font-size:70px;
+animation:bounce 1s infinite;
+}
+
+.loading-title{
+font-size:42px;
+font-weight:900;
+color:#222;
+margin-top:10px;
+}
+
+.loading-text{
+margin-top:10px;
+font-weight:700;
+color:#444;
+}
+
+.percent{
+font-size:24px;
+font-weight:900;
+margin-top:10px;
+color:#222;
+}
+
+.bar{
+width:min(340px,80vw);
+height:15px;
+background:white;
+border-radius:999px;
+overflow:hidden;
+margin-top:20px;
+}
+
+.fill,
+.fill2{
+height:100%;
+width:0%;
+background:#222;
+}
+
+.fill{
+animation:load243 2.43s forwards;
+}
+
+@keyframes load243{
+to{
+width:100%;
+}
+}
+
+@keyframes bounce{
+50%{
+transform:translateY(-8px);
+}
+}
+
+/* 문의 */
+
+.topbar{
+position:fixed;
+top:15px;
+left:15px;
+z-index:100;
+}
+
+.contact-btn{
+border:none;
+padding:12px 18px;
+border-radius:15px;
+font-weight:800;
+cursor:pointer;
+background:rgba(255,255,255,.85);
+backdrop-filter:blur(10px);
+box-shadow:0 8px 20px rgba(0,0,0,.12);
+transition:.25s;
+}
+
+.contact-btn:hover{
+transform:translateY(-3px);
+}
+
+/* 메인 */
+
+.main{
+opacity:0;
+transition:1s;
+padding:100px 20px 50px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+.hero{
+text-align:center;
+margin-bottom:50px;
+}
+
+.hero h1{
+font-size:clamp(42px,8vw,90px);
+font-weight:900;
+color:#222;
+}
+
+.hero p{
+margin-top:10px;
+font-size:18px;
+color:#555;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(12px);
+border-radius:35px;
+padding:30px;
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.icon{
+font-size:60px;
+}
+
+.title{
+font-size:30px;
+font-weight:900;
+margin-top:15px;
+color:#222;
+}
+
+.desc{
+margin-top:10px;
+color:#666;
+line-height:1.6;
+}
+
+.btn{
+width:100%;
+padding:18px;
+margin-top:25px;
+border:none;
+border-radius:18px;
+font-size:18px;
+font-weight:800;
+cursor:pointer;
+background:#ffd43b;
+transition:.25s;
+}
+
+.btn:hover{
+transform:translateY(-4px) scale(1.03);
+box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+
+.btn:active{
+transform:translateY(2px) scale(.98);
+}
+
+/* 떠다니는 냥코 */
+
+.cat{
+position:fixed;
+font-size:40px;
+opacity:.15;
+pointer-events:none;
+animation:float 15s linear infinite;
+}
+
+.cat:nth-of-type(1){
+left:5%;
+animation-duration:16s;
+}
+
+.cat:nth-of-type(2){
+left:30%;
+font-size:55px;
+animation-duration:22s;
+}
+
+.cat:nth-of-type(3){
+left:55%;
+animation-duration:18s;
+}
+
+.cat:nth-of-type(4){
+left:80%;
+font-size:50px;
+animation-duration:24s;
+}
+
+@keyframes float{
+from{
+top:110%;
+}
+to{
+top:-15%;
+}
+}
+
+/* footer */
+
+.footer{
+text-align:center;
+margin-top:100px;
+padding-bottom:40px;
+font-size:14px;
+color:#666;
+}
+
+.footer a{
+color:#222;
+font-weight:700;
+text-decoration:none;
+}
+
+.footer a:hover{
+text-decoration:underline;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading">
+
+<div class="loading-logo">🐱</div>
+
+<div class="loading-title">
+자회자회 냥코툴즈
+</div>
+
+<div class="loading-text">
+로딩중...
+</div>
+
+<div class="percent" id="percent">
+0%
+</div>
+
+<div class="bar">
+<div class="fill"></div>
+</div>
+
+</div>
+
+<div id="pageLoading">
+
+<div class="loading-logo">🐱</div>
+
+<div class="loading-title">
+이동중...
+</div>
+
+<div class="loading-text">
+잠시만 기다려주세요
+</div>
+
+<div class="percent" id="percent2">
+0%
+</div>
+
+<div class="bar">
+<div class="fill2" id="fill2"></div>
+</div>
+
+</div>
+
+<div class="topbar">
+<button class="contact-btn"
+onclick="window.open('http://open.kakao.com/o/sKwv9hbi','_blank')">
+💬 문의하기
+</button>
+</div>
+
+<div class="cat">🐱</div>
+<div class="cat">🐱</div>
+<div class="cat">🐱</div>
+<div class="cat">🐱</div>
+
+<div class="main" id="main">
+
+<div class="container">
+
+<div class="hero">
+<h1>자회자회 냥코툴즈</h1>
+<p>냥코대전쟁 유틸리티 허브</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">💰</div>
+
+<div class="title">
+냥코계정 가치측정기
+</div>
+
+<div class="desc">
+계정의 가치를 계산하고 분석합니다.
+</div>
+
+<button class="btn"
+onclick="fakeLoad('https://jihuluckyman.github.io/nyanko_tool/')">
+시작하기
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🎲</div>
+
+<div class="title">
+뽑기 시뮬레이터
+</div>
+
+<div class="desc">
+가상으로 뽑기를 체험해보세요.
+</div>
+
+<button class="btn"
+onclick="fakeLoad('https://jihuluckyman.github.io/nyanko_gacha/')">
+시작하기
+</button>
+
+</div>
+
+</div>
+
+<div class="footer">
+Made by
+<a href="https://youtube.com/@%EC%9E%90%ED%9A%8C%EC%9E%90%ED%9A%8C"
+target="_blank">
+@자회자회
+</a>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// 첫 로딩 퍼센트
+
+let p = 0;
+
+const timer1 = setInterval(() => {
+
+p++;
+
+document.getElementById("percent").textContent = p + "%";
+
+if(p >= 100){
+clearInterval(timer1);
+}
+
+},24.3);
+
+// 2.43초 후 진입
+
+setTimeout(() => {
+
+document.getElementById("loading").style.display = "none";
+
+document.getElementById("main").style.opacity = "1";
+
+},2430);
+
+// 이동용 가짜 로딩
+
+function fakeLoad(url){
+
+const pageLoading =
+document.getElementById("pageLoading");
+
+const fill =
+document.getElementById("fill2");
+
+const percent =
+document.getElementById("percent2");
+
+pageLoading.style.display = "flex";
+
+let n = 0;
+
+const timer2 = setInterval(() => {
+
+n++;
+
+fill.style.width = n + "%";
+
+percent.textContent = n + "%";
+
+if(n >= 100){
+
+clearInterval(timer2);
+
+window.location.href = url;
+
+}
+
+},20);
+
+}
+
+</script>
+
+</body>
+</html>
